@@ -45,6 +45,6 @@ int main(int argc, char *argv[])
 	fclose(f);
 	free(line);
 	if (stack)
-		free_list(stack);
+		freestack(stack);
 	exit(EXIT_SUCCESS);
 }
