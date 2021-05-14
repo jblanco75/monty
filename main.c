@@ -8,7 +8,8 @@
 int main(int argc, char *argv[])
 {
 	FILE *f;
-	char **tokens = NULL;
+	char *tokens = NULL;
+	char *token2 = NULL;
 	char *line = NULL;
 	size_t len = 0;
 	unsigned int line_number = 1;
@@ -27,15 +28,17 @@ int main(int argc, char *argv[])
 	}
 	while (getline(&line, &len, f) != -1)
 	{
-		tokens = tokenize(line);
-		if (!tokens)
+		tokens = strtok(line, DELIM);
+		token2 = strtok(NULL, DELIM);
+		if (!tokens || !token2)
 		{
 			fclose(f);
 			free(tokens);
+			free(token2);
 		}
 		line_number++;
-		sel_opc(*tokens);
-		n = atoi(tokens[1]);
+		sel_opc(tokens);
+		num = atoi(token2);
 	}
 	fclose(f);
 	if (line)
