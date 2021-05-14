@@ -17,19 +17,16 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	new->n = num;
-	if (*stack == NULL)
-	{
-		new->next = NULL;
-		new->prev = NULL;
-		*stack = new;
-	}
-	else
+	new->prev = NULL;
+	new->next = NULL;
+
+	if (*stack)
 	{
 		(*stack)->prev = new;
 		new->next = *stack;
-		new->prev = NULL;
-		*stack = new;
 	}
+	*stack = new;
+	printf("%d\n", (*stack)->n);
 }
 /**
  * pall - print all node data in the linked list.
@@ -42,7 +39,10 @@ void pall(stack_t **stack, unsigned int line_number)
 	stack_t *head = *stack;
 	(void)line_number;
 
-	while (head->next != NULL)
+	if (head == NULL)
+		printf("Hola mundo\n");
+
+	while (head)
 	{
 		printf("%d\n", head->n);
 		head = head->next;

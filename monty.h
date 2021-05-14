@@ -37,12 +37,12 @@ typedef struct instruction_s
 #include <stdlib.h>
 #include <string.h>
 
-int n;
+int num;
 
 char **tokenize(char *buffer);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
-void *sel_opc(char *func);
+void sel_opc(char *func);
 
 #endif

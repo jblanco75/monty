@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 	char *tokens = NULL;
 	char *token2 = NULL;
 	char *line = NULL;
-	size_t len = 0;
+	size_t len = 0; 
 	unsigned int line_number = 1;
 
 
@@ -30,18 +30,17 @@ int main(int argc, char *argv[])
 	{
 		tokens = strtok(line, DELIM);
 		token2 = strtok(NULL, DELIM);
-		if (!tokens || !token2)
+		if (!tokens)
 		{
 			fclose(f);
 			free(tokens);
-			free(token2);
+			exit(EXIT_FAILURE);
 		}
-		line_number++;
+		if (token2)
+			num = atoi(token2);
+
 		sel_opc(tokens);
-		num = atoi(token2);
+		line_number++;
 	}
-	fclose(f);
-	if (line)
-		free(line);
 	exit(EXIT_SUCCESS);
 }
