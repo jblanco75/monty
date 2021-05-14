@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 		if (token2)
 			num = atoi(token2);
 
-		sel_opc(tokens, &stack);
+		sel_opc(tokens, &stack, line_number);
 		line_number++;
 	}
 	fclose(f);

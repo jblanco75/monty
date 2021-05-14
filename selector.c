@@ -5,10 +5,9 @@
  * @stack: top of linked list
  * Return: is 1 if successful and 0 if failed.
  */
-void sel_opc(char *func, stack_t **stack)
+void sel_opc(char *func, stack_t **stack, unsigned int line_number)
 {
 	unsigned int index = 0;
-	unsigned int line_number = 1;
 	int checker = 0;
 
 	instruction_t op_func[] = {

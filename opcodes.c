@@ -8,7 +8,13 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
-	(void)line_number;
+
+	if (!stack)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		freestack(*stack);
+		exit(EXIT_FAILURE);
+	}
 
 	new = malloc(sizeof(stack_t));
 
@@ -46,7 +52,10 @@ void pall(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (!stack)
-		printf("Stack fallo\n");
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
 	while (head)
 	{
