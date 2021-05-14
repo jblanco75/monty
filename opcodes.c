@@ -1,9 +1,8 @@
 #include "monty.h"
 /**
- * _push - add a new node in a linked list.
+ * push - add a new node in a linked list.
  * @stack: stacker address of the linked list.
- * @num: push the corresponding argument.
- * @line_number: the number of lines in the monty file.
+ * @line_number: number of lines in the monty file.
  */
 
 void push(stack_t **stack, unsigned int line_number)
@@ -26,7 +25,6 @@ void push(stack_t **stack, unsigned int line_number)
 		new->next = *stack;
 	}
 	*stack = new;
-	printf("%d\n", (*stack)->n);
 }
 /**
  * pall - print all node data in the linked list.
@@ -39,7 +37,7 @@ void pall(stack_t **stack, unsigned int line_number)
 	stack_t *head = *stack;
 	(void)line_number;
 
-	if (head == NULL)
+	if (!head)
 		printf("Hola mundo\n");
 
 	while (head)
@@ -63,5 +61,34 @@ void pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 		return;
 	}
-	printf("%d\n", (*stack)->n);
+}
+/**
+ * pop - removes an element on the top of the stack.
+ * @stack: linked list stacker address.
+ * @line_number: line number from the file.
+ * Return: nothing to return.
+ */
+
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = NULL;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't open an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((*stack)->next == NULL)
+	{
+		free(*stack);
+		*stack = NULL;
+	}
+	else
+	{
+		tmp = *stack;
+		((*stack)->next)->prev = NULL;
+		(*stack) = (*stack)->next;
+		free(tmp);
+	}
 }

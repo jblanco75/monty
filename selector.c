@@ -15,11 +15,12 @@ void sel_opc(char *func)
 	instruction_t op_func[] = {
 		{"push", push},
 		{"pall", pall},
-		{"pint", pint}
+		{"pint", pint},
+		{"pop", pop}
 		
 	};
 
-	for (index = 0; index < 3; index++)
+	for (index = 0; index < 4; index++)
 	{
 		checker = 0;
 		if (strcmp(op_func[index].opcode, func) == 0)
