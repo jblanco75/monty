@@ -2,15 +2,14 @@
 /**
  * sel_opc - finds opc in array of structs
  * @func: operation to implement
+ * @stack: top of linked list
  * Return: is 1 if successful and 0 if failed.
  */
-void sel_opc(char *func)
+void sel_opc(char *func, stack_t **stack)
 {
 	unsigned int index = 0;
-	stack_t *stack = NULL;
 	unsigned int line_number = 1;
 	int checker = 0;
-       
 
 	instruction_t op_func[] = {
 		{"push", push},
@@ -19,7 +18,6 @@ void sel_opc(char *func)
 		{"pop", pop},
 		{"swap", swap},
 		{"nop", nop}
-		
 	};
 
 	for (index = 0; index < 6; index++)
@@ -28,7 +26,7 @@ void sel_opc(char *func)
 		if (strcmp(op_func[index].opcode, func) == 0)
 		{
 			checker = 1;
-			op_func[index].f(&stack, line_number);
+			op_func[index].f(stack, line_number);
 			break;
 		}
 	}

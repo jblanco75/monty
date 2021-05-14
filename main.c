@@ -11,15 +11,15 @@ int main(int argc, char *argv[])
 	char *tokens = NULL;
 	char *token2 = NULL;
 	char *line = NULL;
-	size_t len = 0; 
+	size_t len = 0;
 	unsigned int line_number = 1;
-
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
-	}	
+	}
 	f = fopen(argv[1], "r");
 	if (!f)
 	{
@@ -39,8 +39,12 @@ int main(int argc, char *argv[])
 		if (token2)
 			num = atoi(token2);
 
-		sel_opc(tokens);
+		sel_opc(tokens, &stack);
 		line_number++;
 	}
+	fclose(f);
+	free(line);
+	if (stack)
+		free_list(stack);
 	exit(EXIT_SUCCESS);
 }

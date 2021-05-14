@@ -8,23 +8,31 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
+	(void)line_number;
 
 	new = malloc(sizeof(stack_t));
+
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed, in line %d\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	new->n = num;
-	new->prev = NULL;
-	new->next = NULL;
 
-	if (*stack)
+	new->n = num;
+
+	if (*stack == NULL)
 	{
+		new->prev = NULL;
+		new->next = NULL;
+		*stack = new;
+	}
+	else
+	{
+		new->prev = NULL;
 		(*stack)->prev = new;
 		new->next = *stack;
+		*stack = new;
 	}
-	*stack = new;
 }
 /**
  * pall - print all node data in the linked list.
@@ -36,6 +44,9 @@ void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = *stack;
 	(void)line_number;
+
+	if (!stack)
+		printf("Stack fallo\n");
 
 	while (head)
 	{
@@ -58,6 +69,7 @@ void pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 		return;
 	}
+	printf("%d\n", (*stack)->n);
 }
 /**
  * pop - removes an element on the top of the stack.
