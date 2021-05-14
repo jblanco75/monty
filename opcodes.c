@@ -37,9 +37,6 @@ void pall(stack_t **stack, unsigned int line_number)
 	stack_t *head = *stack;
 	(void)line_number;
 
-	if (!head)
-		printf("Hola mundo\n");
-
 	while (head)
 	{
 		printf("%d\n", head->n);
@@ -91,4 +88,24 @@ void pop(stack_t **stack, unsigned int line_number)
 		(*stack) = (*stack)->next;
 		free(tmp);
 	}
+}
+/**
+ * swap - swap the top two elements of the stack.
+ * @stack: linked list's stack address.
+ * @line_number: line number from file.
+ * Return: nothing
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+	int iter;
+	(void) line_number;
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	iter = (*stack)->n;
+	(*stack)->n = ((*stack)->next)->n;
+	((*stack)->next)->n = iter;
 }

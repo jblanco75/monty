@@ -16,11 +16,12 @@ void sel_opc(char *func)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
-		{"pop", pop}
+		{"pop", pop},
+		{"swap", swap}
 		
 	};
 
-	for (index = 0; index < 4; index++)
+	for (index = 0; index < 5; index++)
 	{
 		checker = 0;
 		if (strcmp(op_func[index].opcode, func) == 0)
