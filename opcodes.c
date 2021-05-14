@@ -1,38 +1,35 @@
 #include "monty.h"
 /**
- * push - add a new node in a linked list
- * @stack: header address of the linked list
- * @n: the push corresponding arg.
- * Return: nothing to return.
+ * _push - add a new node in a linked list.
+ * @stack: stacker address of the linked list.
+ * @num: push the corresponding argument.
+ * @line_number: the number of lines in the monty file.
  */
 
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
-        (void)line_number;
 
-	/*if (!stack)
-	{
-		fprintf(stderr, "Error: stack failed\n");
-		exit(EXIT_FAILURE);
-		}*/
-		
 	new = malloc(sizeof(stack_t));
-
-	if (!new)
+	if (new == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed, in line %d\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	new->prev = NULL;
-	new->n = n;
-	new->next = (*stack);
-
-	if (*stack != NULL)
+	new->n = num;
+	if (*stack == NULL)
+	{
+		new->next = NULL;
+		new->prev = NULL;
+		*stack = new;
+	}
+	else
+	{
 		(*stack)->prev = new;
-
-	*stack = new;
+		new->next = *stack;
+		new->prev = NULL;
+		*stack = new;
+	}
 }
 /**
  * pall - print all node data in the linked list.
@@ -40,20 +37,15 @@ void push(stack_t **stack, unsigned int line_number)
  * @line_number: the number of lines of the monty file that we are treating.
  * Return: nothing to return.
  */
-
 void pall(stack_t **stack, unsigned int line_number)
 {
-
-	stack_t *h = *stack;
-
+	stack_t *head = *stack;
 	(void)line_number;
 
-	if (*stack == NULL)
-		return;
-	while (h)
+	while (head->next != NULL)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
+		printf("%d\n", head->n);
+		head = head->next;
 	}
 }
 /**
