@@ -24,7 +24,7 @@ void add(stack_t **stack, unsigned int line_number)
 		++iter;
 	}
 	head = *stack;
-	if (iter < 3)
+	if (iter < 2)
 	{
 		freestack(*stack);
 		*stack = NULL;
