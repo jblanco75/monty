@@ -48,6 +48,7 @@ void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
 void sel_opc(char *func, stack_t **stack, unsigned int line_number);
 void freestack(stack_t *stack);
 
