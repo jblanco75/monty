@@ -17,10 +17,11 @@ void sel_opc(char *func, stack_t **stack, unsigned int line_number)
 		{"pop", pop},
 		{"swap", swap},
 		{"nop", nop},
-		{"add", add}
+		{"add", add},
+		{"sub", sub}
 	};
 
-	for (index = 0; index < 7; index++)
+	for (index = 0; index < 8; index++)
 	{
 		checker = 0;
 		if (strcmp(op_func[index].opcode, func) == 0)
