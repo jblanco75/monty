@@ -19,10 +19,11 @@ void sel_opc(char *func, stack_t **stack, unsigned int line_number)
 		{"nop", nop},
 		{"add", add},
 		{"sub", sub},
-		{"div", _div}
+		{"div", _div},
+		{"mul", mul}
 	};
 
-	for (index = 0; index < 9; index++)
+	for (index = 0; index < 10; index++)
 	{
 		checker = 0;
 		if (strcmp(op_func[index].opcode, func) == 0)
