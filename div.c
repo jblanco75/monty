@@ -13,7 +13,7 @@ void _div(stack_t **stack, unsigned int line_number)
 
 	if (!stack || !*stack || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		freestack(*stack);
 		exit(EXIT_FAILURE);
 	}
